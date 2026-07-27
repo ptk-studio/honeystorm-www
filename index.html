@@ -81,6 +81,21 @@
       font-size: .8rem;
       text-align: center;
     }
+    footer a {
+      display: inline;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      font-weight: inherit;
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: .15em;
+    }
+    footer a:hover, footer a:focus-visible {
+      color: var(--accent);
+      transform: none;
+    }
+    footer .credit { margin-top: .35rem; }
   </style>
 </head>
 <body>
@@ -146,7 +161,10 @@
       </ul>
     </section>
 
-    <footer>© HoneyStorm</footer>
+    <footer>
+      <div>© HoneyStorm</div>
+      <div class="credit">A <a href="https://ptk-studio.com" target="_blank" rel="noopener">PTK Studio</a> Production</div>
+    </footer>
   </main>
 </body>
 </html>
