@@ -34,6 +34,12 @@ legend{font-weight:600;margin-bottom:.3rem}
 form button{margin-top:1rem}
 .status{margin-top:.75rem}
 footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.videos{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.75rem}
+.video{flex:0 0 calc(50% - .4rem)}
+.video.short{flex:0 0 calc(33.333% - .5rem)}
+.video a{display:block;text-decoration:none;font-size:.85rem;line-height:1.3}
+.video img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;margin-bottom:.35rem}
+@media (max-width:30rem){.video,.video.short{flex:0 0 calc(50% - .4rem)}}
 </style></head>
 <body><main>
 <p class="crumbs"><a href="/">Honey Storm</a> · <a href="/books/">Books</a></p>
