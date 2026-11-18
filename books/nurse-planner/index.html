@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="/books/nurse-planner/"><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23e8a317'/%3E%3C/svg%3E"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'"><link rel="canonical" href="https://honeystorm.com/books/nurse-planner/"><title>Nurse Shift Planner · Honey Storm</title><style>:root{--bg:#fdfaf3;--fg:#1c1a17;--muted:#6b6355;--line:#e3dccc;--accent:#e8a317;--btn:#1c1a17;--btnfg:#fdfaf3}
+<html lang="en" data-page="/books/nurse-planner/"><head><meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23e8a317'/%3E%3C/svg%3E"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'sha256-CEzJLwN2oHD4gz9TxkUuchQRVZzgMMLQ8EpZIXA83m4='; connect-src https://api.88eggs.com; base-uri 'none'; form-action 'none'"><link rel="canonical" href="https://honeystorm.com/books/nurse-planner/"><title>Nurse Shift Planner · Honey Storm</title><style>:root{--bg:#fdfaf3;--fg:#1c1a17;--muted:#6b6355;--line:#e3dccc;--accent:#e8a317;--btn:#1c1a17;--btnfg:#fdfaf3}
 @media (prefers-color-scheme:dark){:root{--bg:#14120f;--fg:#f5f0e6;--muted:#9b9384;--line:#2c2822;--accent:#f0b429;--btn:#f5f0e6;--btnfg:#14120f}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
@@ -37,6 +37,34 @@ footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-
 <article class="one"><h1>Nurse Shift Planner</h1><p class="lead">A planner built around shifts, for the nurses who keep the night going.</p></article>
 <h2>Tell us what you think</h2>
 <p>Tell us what worked and what we should change. We read every message.</p>
-<p class="soon-box">Feedback for this book opens soon. Thank you for coming by.</p>
+<form id="fb" data-key="fk_IlnrV6369IAd05VyGHC_wL0z" data-api="https://api.88eggs.com" novalidate>
+<fieldset><legend>Your rating (1 = not for me, 5 = loved it)</legend><label class="star"><input type="radio" name="rating" value="1"> 1</label><label class="star"><input type="radio" name="rating" value="2"> 2</label><label class="star"><input type="radio" name="rating" value="3"> 3</label><label class="star"><input type="radio" name="rating" value="4"> 4</label><label class="star"><input type="radio" name="rating" value="5"> 5</label></fieldset>
+<label>What did you like?<textarea name="liked" maxlength="1800" rows="4"></textarea></label>
+<label>What should we change?<textarea name="change" maxlength="1800" rows="4"></textarea></label>
+<label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+<label>Your email (optional)<input type="email" name="email" maxlength="254" autocomplete="email"></label>
+<label class="check"><input type="checkbox" name="consent"> Yes, you may email me a reply about this message. (Only a reply: not a newsletter. Without this box we don't keep the address.)</label>
+<button type="submit">Send</button>
+<p class="status" role="status" hidden></p>
+</form>
 <footer><a href="/privacy/">Privacy</a></footer>
-</main></body></html>
+</main><script>(function(){"use strict";
+var f=document.getElementById("fb");if(!f)return;var t0=Date.now();
+var st=f.querySelector(".status");
+function say(m){st.textContent=m;st.hidden=false;}
+f.addEventListener("submit",function(e){e.preventDefault();
+ var r=f.querySelector("input[name=rating]:checked");
+ var liked=f.liked.value.trim(),change=f.change.value.trim();
+ if(!r&&!liked&&!change){say("Please pick a rating or write a few words.");return;}
+ var parts=[];if(liked)parts.push("What did you like?\n"+liked);if(change)parts.push("What should we change?\n"+change);
+ var body={kind:"other",message:parts.join("\n\n")||"(rating only)",page_url:location.origin+location.pathname,
+  website:f.website.value,elapsed_ms:Date.now()-t0,platform:"web"};
+ if(r)body.rating=Number(r.value);
+ var em=f.email.value.trim();if(em&&f.consent.checked){body.email=em;body.consent=true;}
+ var b=f.querySelector("button");b.disabled=true;say("Sending…");
+ fetch(f.getAttribute("data-api")+"/feedback/v1/"+f.getAttribute("data-key"),{method:"POST",mode:"cors",credentials:"omit",
+  headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+ .then(function(res){if(res.status===202){f.reset();say("Thank you! We read every message.");}
+  else{b.disabled=false;say(res.status===429?"Too many messages just now. Please try again later.":"That didn't send. Please try again.");}})
+ .catch(function(){b.disabled=false;say("That didn't send. Please check your connection and try again.");});
+});})();</script></body></html>
